@@ -46,9 +46,14 @@ namespace MyPrimerJuegoSFML
             }
             //Problema: Mi player es mas rapido en diagonal.
             //Solucion: Aplicar matematicas de vectores.
+            float dirMag = MathF.Sqrt(direction.X*direction.X+direction.Y*direction.Y);
+            if (dirMag <= 0)
+            {
+                Vector2f dirNormalized = direction / dirMag;
 
+                _body.Position += dirNormalized;
 
-            _body.Position += direction;
+            }
         }
 
         public void Draw(RenderWindow playerWindow)

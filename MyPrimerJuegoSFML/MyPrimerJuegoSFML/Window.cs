@@ -9,5 +9,9 @@ namespace MyPrimerJuegoSFML
 {
     internal class Window
     {
+
+        public Window() { }
+
+
     }
 }

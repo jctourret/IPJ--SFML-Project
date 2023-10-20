@@ -1030,11 +1030,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Juan Cruz Tourret\\source\\repos\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML.csproj",
+      "projectUniqueName": "C:\\Users\\Juan Cruz Tourret\\Desktop\\Repos\\IPJ- SFML Project\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML.csproj",
       "projectName": "MyPrimerJuegoSFML",
-      "projectPath": "C:\\Users\\Juan Cruz Tourret\\source\\repos\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML.csproj",
+      "projectPath": "C:\\Users\\Juan Cruz Tourret\\Desktop\\Repos\\IPJ- SFML Project\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML.csproj",
       "packagesPath": "C:\\Users\\Juan Cruz Tourret\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Juan Cruz Tourret\\source\\repos\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML\\obj\\",
+      "outputPath": "C:\\Users\\Juan Cruz Tourret\\Desktop\\Repos\\IPJ- SFML Project\\MyPrimerJuegoSFML\\MyPrimerJuegoSFML\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Juan Cruz Tourret\\AppData\\Roaming\\NuGet\\NuGet.Config",
