@@ -1,4 +1,5 @@
 ﻿using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 
 namespace MyPrimerJuegoSFML
@@ -6,6 +7,9 @@ namespace MyPrimerJuegoSFML
     internal class Juego
     {
         Player chespirito;
+
+        Clock deltaClock;
+        Time deltaTime;
 
         RenderWindow window;
         VideoMode videoMode;
@@ -31,8 +35,11 @@ namespace MyPrimerJuegoSFML
             screenWidth = 800;
             screenHeight = 600;
 
-            // Create the main window
 
+            deltaClock = new Clock();
+
+            deltaTime = new Time();
+            // Create the main window
             videoMode = new VideoMode(screenWidth, screenHeight);
             window = new RenderWindow(videoMode, "Mi Primer Juegito");
 
@@ -45,7 +52,8 @@ namespace MyPrimerJuegoSFML
         void Update()// Se encarga de la logica de nuestro juego.
                      // Es lo que se ejecuta frame a frame.
         {
-            chespirito.Update();
+            deltaTime = deltaClock.Restart();
+            chespirito.Update(deltaTime);
         }
 
         void Draw() // Es la que encarga de dibujar toda

@@ -4,17 +4,19 @@ using SFML.Window;
 
 namespace MyPrimerJuegoSFML
 {
-    internal class Player
+
+    internal class Player : GameObjectBase
     {
         public CircleShape _body;
         float _radius;
         Color innerColor;
         Color outerColor;
 
+        float speed = 100;
+
         public Player(float posX, float posY)
         {
             _radius = 30;
-
             _body = new CircleShape(_radius);
             _body.Position = new Vector2f(posX, posY);
         }
@@ -25,7 +27,7 @@ namespace MyPrimerJuegoSFML
             _body.Position = pos;
         }
 
-        public void Update()
+        public void Update(Time deltaTime)
         {
             Vector2f direction = new Vector2f();
             if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
@@ -47,12 +49,12 @@ namespace MyPrimerJuegoSFML
             //Problema: Mi player es mas rapido en diagonal.
             //Solucion: Aplicar matematicas de vectores.
             float dirMag = MathF.Sqrt(direction.X*direction.X+direction.Y*direction.Y);
-            if (dirMag <= 0)
+            
+            if (dirMag > 0)
             {
                 Vector2f dirNormalized = direction / dirMag;
 
-                _body.Position += dirNormalized;
-
+                _body.Position += dirNormalized * speed * deltaTime.AsSeconds() ;
             }
         }
 
