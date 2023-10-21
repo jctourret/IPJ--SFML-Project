@@ -46,7 +46,7 @@ namespace MyPrimerJuegoSFML
             window.SetFramerateLimit(60);
             window.SetVerticalSyncEnabled(true);
 
-            chespirito = new Player(screenWidth/2,screenHeight/2);
+            chespirito = new Player(10,10,100,100);
         }
 
         void Update()// Se encarga de la logica de nuestro juego.

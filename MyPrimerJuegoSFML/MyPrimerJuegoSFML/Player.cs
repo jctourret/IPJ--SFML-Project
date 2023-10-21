@@ -4,27 +4,49 @@ using SFML.Window;
 
 namespace MyPrimerJuegoSFML
 {
-
+    enum playerStates
+    {
+        idle,
+        moveUp,
+        moveRight,
+        moveDown,
+        moveLeft
+    }
     internal class Player : GameObjectBase
     {
-        public CircleShape _body;
+        public RectangleShape _body;
         float _radius;
         Color innerColor;
         Color outerColor;
 
+        Texture _texture;
+        Sprite _sprite;
+
+        List<Animation> animations;
+
         float speed = 100;
 
-        public Player(float posX, float posY)
+        public Player(float posX, float posY, float sizeX, float sizeY)
         {
             _radius = 30;
-            _body = new CircleShape(_radius);
+            _body = new RectangleShape(new Vector2f(sizeX,sizeY));
+            _body.Origin = new Vector2f(posX+(sizeX/2), posY+(sizeY/2));
             _body.Position = new Vector2f(posX, posY);
+
+            _texture = new Texture("Novice.png");
+
+            IntRect spriteRect = new IntRect(11,11,36,72);
+
+            _sprite = new Sprite(_texture,spriteRect);
+            _sprite.Origin = new Vector2f(_sprite.Position.X+(_sprite.TextureRect.Width/2),
+                _sprite.Position.Y + (_sprite.TextureRect.Height / 2));
+
+
         }
+
 
         public Player(float radius, Vector2f pos)
         {
-            _body = new CircleShape(radius);
-            _body.Position = pos;
         }
 
         public void Update(Time deltaTime)
@@ -56,11 +78,13 @@ namespace MyPrimerJuegoSFML
 
                 _body.Position += dirNormalized * speed * deltaTime.AsSeconds() ;
             }
+            _sprite.Position = _body.Position;
         }
 
         public void Draw(RenderWindow playerWindow)
         {
             playerWindow.Draw(_body);
+            playerWindow.Draw(_sprite);
         }
     }
 }
