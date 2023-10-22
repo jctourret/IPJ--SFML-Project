@@ -4,7 +4,7 @@ using SFML.Window;
 
 namespace MyPrimerJuegoSFML
 {
-    enum playerStates
+    enum PlayerStates
     {
         idle,
         moveUp,
@@ -19,8 +19,10 @@ namespace MyPrimerJuegoSFML
         Color innerColor;
         Color outerColor;
 
-        Texture _texture;
-        Sprite _sprite;
+
+        PlayerStates _currentState = PlayerStates.idle;
+        Texture _spriteSheet;
+        Sprite _currentSprite;
 
         List<Animation> animations;
 
@@ -30,27 +32,28 @@ namespace MyPrimerJuegoSFML
         {
             _radius = 30;
             _body = new RectangleShape(new Vector2f(sizeX,sizeY));
-            _body.Origin = new Vector2f(posX+(sizeX/2), posY+(sizeY/2));
+            
+            //Si bien el calculo para conseguir el centro de nuestra forma es new Vector2f(posX+(_body.Size.X/2), posY+(_body.Size.Y/2))
+
+            //Origin necesita estar calculado de una forma que debe ignorar toda transformacion, un cambio de posicion es una transformacion,
+            //por lo que tenemos que usar solo _body.Size.Y/2
+            _body.Origin = new Vector2f(_body.Size.X/2, _body.Size.Y/2);
             _body.Position = new Vector2f(posX, posY);
 
-            _texture = new Texture("Novice.png");
+            _spriteSheet = new Texture("YellowMan.png");
 
-            IntRect spriteRect = new IntRect(11,11,36,72);
+            _currentSprite = new Sprite();
 
-            _sprite = new Sprite(_texture,spriteRect);
-            _sprite.Origin = new Vector2f(_sprite.Position.X+(_sprite.TextureRect.Width/2),
-                _sprite.Position.Y + (_sprite.TextureRect.Height / 2));
+            animations = new List<Animation>();
 
+            animations.Add(new Animation(_spriteSheet,50,50,1,4,2,5,1)); // Idle
 
-        }
-
-
-        public Player(float radius, Vector2f pos)
-        {
         }
 
         public void Update(Time deltaTime)
         {
+            _currentSprite = animations[(int)_currentState].updateAnimation(deltaTime);
+
             Vector2f direction = new Vector2f();
             if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
@@ -78,13 +81,14 @@ namespace MyPrimerJuegoSFML
 
                 _body.Position += dirNormalized * speed * deltaTime.AsSeconds() ;
             }
-            _sprite.Position = _body.Position;
+            _currentSprite.Position = _body.Position;
         }
 
         public void Draw(RenderWindow playerWindow)
         {
             playerWindow.Draw(_body);
-            playerWindow.Draw(_sprite);
+
+            playerWindow.Draw(_currentSprite);
         }
     }
 }
