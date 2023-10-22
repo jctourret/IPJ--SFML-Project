@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace MyPrimerJuegoSFML
 {
-    internal class Window
+    static class Window
     {
+        //Eventualmente mudaremos la funcionalidad de la ventana a esta clase estatica
+        //para que todo nuestro juego pueda acceder a los datos relevantes.
 
-        public Window() { }
+        static Window()
+        {
+                
+        }
 
 
     }
